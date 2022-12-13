@@ -32,18 +32,21 @@ int main(){
     for(int i = 0; i < snake_index;i++){
         printf(" %d, ",snake[i]);
     }
-    int len = 1;
+    int len = 0;
     int maxLen = INT_MIN;
-    for(int i = 0; i < snake_index; i++){
-        if(snake[i] < snake[i+1]){
+    for(int i = 1; i < snake_index; i++){
+        if(snake[i-1] < snake[i]){
             len++;
-        } else{
+        }else{
             if(len > maxLen)
                 maxLen = len;
-            len = 1;
+            len = 0;
         }
-        printf("\nbr1 : %d , br2 :  %d ,len %d",snake[i],snake[i+1],len);
+        printf("\nbr1 : %d , br2 :  %d ,len %d",snake[i-1],snake[i],len);
     }
+    //zbog nacina provjere maxLen moram da povecam za jedan da bih dobio
+    //korektan iznos za duzivnu sekvence
+    maxLen++;
     printf("\nduzina sekvence %d",maxLen);
     return 0;
 }
