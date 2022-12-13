@@ -46,7 +46,7 @@ int main(){
         printf(" %d ",array[i]);
     }
     // za siftovanje elemenata niza za k broj pozicija u lijveo
-    /*
+
     int k = 4;
     for (int i = 0; i < k; ++i){
         int last = array[0];
@@ -59,7 +59,7 @@ int main(){
     for (int i = 0; i < 5; ++i) {
         printf(" %d ",array[i]);
     }
-*/
+
     //za rotiranje put desno k-puta
     int z = 3;
     for (int i = 0; i < z; ++i){
