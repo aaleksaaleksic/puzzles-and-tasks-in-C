@@ -10,10 +10,8 @@ void rightRotateByOne(int A[], int n)
     for (int i = n - 2; i >= 0; i--) {
         A[i + 1] = A[i];
     }
-
     A[0] = last;
 }
-
 // Function to right-rotate an array by `k` positions
 void rightRotate(int A[], int k, int n)
 {
@@ -21,13 +19,10 @@ void rightRotate(int A[], int k, int n)
     if (k < 0 || k >= n) {
         return;
     }
-
     for (int i = 0; i < k; i++) {
         rightRotateByOne(A, n);
     }
 }
-
-
 
 int main(){
     int n,k;
@@ -39,7 +34,6 @@ int main(){
             scanf("%d",&matrica[i][j]);
         }
     }
-
 
     int b[n][n];
     for(int i = 0; i < n; i++){
@@ -70,7 +64,6 @@ int main(){
         }
 
         //rotiram niz za k pozicija
-
         printf("\nUcitan niz: \n");
         for (int i = 0; i < niz_index; ++i) {
             printf("%d ,", niz[i]);
