@@ -3,4 +3,4 @@ project(UUP-2 C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(UUP-2 2019/G4/2_AA.c)
+add_executable(UUP-2 2020/G2/2_AA.c)
