@@ -23,7 +23,7 @@ int main(){
     for(int i = 0; i < n; i++){
         for(int j = 0; j < m; j++){
             int edge = matrica[i][j];
-            printf("ivica u pitanju : %d\n",edge);
+            printf("\nivica u pitanju : %d\n",edge);
 
             for(int i1 = i; i1 < n-1; i1++){
                 for(int j1 = j+1; j1 < m-1; j1++){
@@ -44,7 +44,7 @@ int main(){
             }
 
             if(dimY >= 3 && dimX >= 3 && dimX == dimY){
-                printf("i: %d j: %d, dimenzija x: %d, y: %d",i,j,dimX,dimY);
+                printf("\ni: %d j: %d, dimenzija x: %d, y: %d",i,j,dimX,dimY);
             }
         }
     }
