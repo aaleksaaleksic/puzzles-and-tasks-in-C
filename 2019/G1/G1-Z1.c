@@ -9,7 +9,6 @@ int gornji(int n, int i){
     }else{
         gornji = n - i / 2 + 1;
     }
-    printf("ITERACIJA %d, GORNJI : %d\n",i,gornji);
     return gornji;
 }
 
@@ -20,7 +19,6 @@ int donji(int n, int i){
     }else{
         donji = (i/2) * (i/2);
     }
-    printf("ITERACIJA %d, DONJI : %d\n",i,donji);
     return donji;
 }
 double rek(int n, int i){
