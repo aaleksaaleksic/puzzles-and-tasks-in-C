@@ -32,11 +32,10 @@ int main(){
     novi[0] = 0;
 
     int novi_idx = 0,zagrada_idx;
-    int flag = 0;int index_count = 0;
+
 
     for(int i = 0; i < strlen(p); i++){
         if(p[i] == '('){
-            flag = 1;
             zagrada_idx = i + 1;
             int c = 0;
             if(isOk(p,s,zagrada_idx)){
@@ -46,17 +45,15 @@ int main(){
                 }
                 novi[novi_idx++] = ' ';
                 i += c;
-                flag = 0;
+
             }
             continue;
         }
         if(p[i] == ')'){
-            flag = 0;
             zagrada_idx = 0;
             continue;
         }
-        if(flag)
-            index_count++;
+
 
 
     }

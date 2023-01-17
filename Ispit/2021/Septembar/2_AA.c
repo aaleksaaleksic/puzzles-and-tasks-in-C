@@ -30,7 +30,7 @@ int main(){
             novi[novi_idx++] = str[i];
             flag++;
             flag %= 2; // ne brinem vise da li je 0 ili 1 sa ovim, vec svaki put kada ga inkrementiram modujem ga
-            navodnici_idx = (flag) ? i + 1 : -1; // namestamo index na prvo slovo posle navodnika
+            navodnici_idx = (flag) ? i + 1 : -1; // namestamo index na prvo slovo posle navodnika u koliko je flag odgovarajuci
             continue;
         }
         if(flag){

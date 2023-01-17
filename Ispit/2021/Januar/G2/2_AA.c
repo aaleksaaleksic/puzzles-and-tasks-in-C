@@ -15,14 +15,14 @@ int isValid(int x,int y,char* p, char* s){
             if(strchr(s,p[i]) - s == koord)
                 continue; // naleteli smo na isto slovo kao pocetno
             if(strchr(s,p[i]) - s == koord + 1)
-                koord++; // naisli smo na drugo slovo
+                koord++; // naisli smo na drugo slovo koje je sledece na redu da se pojavi
             else
                 return 0;
 
         }
 
     }
-    return y - x + 1; // vraca dimenziju podstringa
+    return y - x + 1; // vraca dimenziju podstringa u koliko je prosao sve provere
 }
 int main(){
     char p[100],s[100];
