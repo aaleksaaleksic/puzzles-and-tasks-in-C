@@ -26,7 +26,7 @@ int stepen(int a, int b){
 int gornji(int n, int iteracija){
     int gornji;
     if(iteracija % 2){
-        gornji = (iteracija <= n/2)? stepen(2 * n - iteracija,iteracija) : stepen(2 * n - iteracija,(iteracija - n / 2) % (n/2));
+        gornji = stepen(2 * n - iteracija,iteracija % (n/2+1) );
     }else{
         gornji = n - iteracija + 1;
     }
@@ -38,7 +38,7 @@ int donji(int n, int iteracija){
     if(iteracija % 2){
         donji = n - iteracija + 1;
     }else{
-        donji = (iteracija <= n/2)? stepen(2 * n - iteracija,iteracija) : stepen(2 * n - iteracija,(iteracija - n / 2)  );
+        donji = stepen(2 * n - iteracija,iteracija % (n/2+1) );
     }
     printf("ITERACIJA : %d, DONJI : %d \n",iteracija,donji);
     return donji;
