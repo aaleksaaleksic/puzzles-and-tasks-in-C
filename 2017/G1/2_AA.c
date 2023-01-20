@@ -32,23 +32,6 @@ int main(){
 
     //popunjavam sa dijagonale
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     int j1 = dim - 1;
     int flag = 1;
     for(int i = 0; i < dim; i++){ // popunjavamo desno od sporedne
