@@ -19,7 +19,7 @@ void rightRotate(int A[], int k, int n)
     if (k < 0 || k >= n) {
         return;
     }
-    for (int i = 0; i < k; i++) {
+    for (int i = 0; i < k*(n-1); i++) {
         rightRotateByOne(A, n);
     }
 }
@@ -99,7 +99,7 @@ int main(){
     printf("\n");
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
-            printf("%d ",b[i][j]);
+            printf(" %d ",b[i][j]);
         }
         printf("\n");
     }
