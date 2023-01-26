@@ -10,6 +10,7 @@ double gornji(int i,int n){
 
     return n - i / 2 + 1;
 }
+
 double donji(int i,int n){
     if(i % 2)
         return pow(n - i / 2,2);

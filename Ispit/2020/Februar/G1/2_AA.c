@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 /*
@@ -6,51 +7,61 @@ Unos: abcdeXhz zhj bbbbXac cccXs
 Ispis: ahbzchdze zhj babcbab cscsc
 */
 
-void modifikuj(char* str){
-
-    char desno[10];
-    int desnoIndex = 0;
-    for(int i = strchr(str, 'X') - str + 1; i < strlen(str); i++){              //pravimo niz sa slovima desno od X
-        desno[desnoIndex++] = str[i];
-    }
-    desno[desnoIndex] = '\0';
-    int mod = strlen(desno);                                                    //pravicemo "loop" kroz niz desnih slova sa modom koji je duzina tog niza
-
-    char novi[100];
-    int noviIndex = 0, brojac = 0;
-    for(int i = 0; str[i] != 'X'; i++){                                         //u novi niz naizmenicno dodajemo levi karakter pa desni
-        novi[noviIndex++] = str[i];
-        novi[noviIndex++] = desno[(brojac++)%mod];
-    }
-    novi[noviIndex-1] = '\0';                                                   //-1 jer zelimo da se zavrsi sa levim karakterom
-    strcpy(str, novi);
-}
-
-int main(){
-
-    char str[100], novi[100];
-    fgets(str, sizeof(str), stdin);                                             //necemo brisati '\n' iz fgets jer mi pravi neku gresku
-
-    char rec[50];
-    rec[0] = '\0';
-    novi[0] = '\0';
-    int recIndex = 0;
-    int len = strlen(str);
-
-    for(int i = 0; i < len; i++){
-        rec[recIndex++] = str[i];
-        if(str[i] == ' ' || str[i] == '\n'){
-            rec[recIndex-1] = '\0';
-            recIndex = 0;
-            if(strchr(rec, 'X'))                    //ako rec sadrzi 'X' u sebi
-                modifikuj(rec);
-            strcat(novi, rec);
-            strcat(novi, " ");
+void modifikuj(char* str, char* novi, int start, int end, int* novi_index)
+{
+    int ima_x = 0;
+    int lokacija_x;
+    for(int i = start; i <= end; i++){
+        if(str[i] == 'X'){
+            lokacija_x = i;
+            ima_x = 1;
+            break;
         }
     }
 
-    novi[strlen(novi)-1] = '\0';
-    puts(novi);
-    return 0;
+    if(!ima_x){
+        for(int i = start; i <= end; i++){
+            novi[(*novi_index)++] = str[i];
+        }
+        novi[(*novi_index)++] = ' ';
+        return;
+    }
+
+    int duzina_desnog_dela = end - lokacija_x;
+
+    for(int i = start; str[i] != 'X'; i++){
+        novi[(*novi_index)++] = str[i];
+        novi[(*novi_index)++] = str[lokacija_x + 1 + ((i - start) % duzina_desnog_dela)];
+
+    }
+    novi[(*novi_index)++] = ' ';
+
 }
 
+
+int main()
+{
+    char str[100],novi[100];
+    novi[0] = 0;
+    fgets(str,sizeof(str),stdin);
+    str[strlen(str) - 1] = 0;
+
+    int start,end;
+    int novi_index = 0;
+
+    for(int i = 0; i < strlen(str); i++){
+        if(i == 0 || str[i - 1] == ' '){
+            start = i;
+            continue;
+        }
+        if(i == strlen(str) - 1 || str[i + 1] == ' '){
+            end = i;
+//          printf("pocetak %d kraj %d\n",start,end);
+            modifikuj(str,novi,start,end,&novi_index);
+
+        }
+    }
+
+    fputs(novi,stdout);
+    return 0;
+}

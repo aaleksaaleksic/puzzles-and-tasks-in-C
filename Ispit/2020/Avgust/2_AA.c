@@ -32,9 +32,9 @@ void zavrniGa(char* token,char* novi, int* index){ // sa strtokom
     }
 }
 void zavrniGa2(char* str,int pocetak,int kraj,char* novi, int* index){ // bez strtoka
-    int trebaZavrtanje = 0;
+    int trebaZavrtanje = 0; // ovim proveravamo da li uopste treba da se okrece rec
     int koordinata;
-    for(int i = pocetak; i <= kraj; i++){
+    for(int i = pocetak; i <= kraj; i++){ // pronalazimo kordinatu ponavljanja slova
         if(str[i] == str[i + 1]){
             trebaZavrtanje = 1;
             koordinata = i;
@@ -63,7 +63,8 @@ int main(){
     char str[100],novi[100];
     fgets(str,sizeof(str),stdin);
     str[strlen(str) - 1] = 0;
-    int novi_idx = 0;
+    int novi_idx = 0; // u funkciju kada popunjavamo novi string prosledimo pokazivac na brojac
+    // jer cemo tako dinamicki pamtiti gde smo stali cak iako je ++ -- van "main-a"
     int pocetak,kraj;
 
     for(int i = 0; i < strlen(str); i++){

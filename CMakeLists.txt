@@ -3,4 +3,4 @@ project(UUP-2 C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(UUP-2 )
+add_executable(UUP-2 Ispit/2022/Avgust/3_AA.c)
