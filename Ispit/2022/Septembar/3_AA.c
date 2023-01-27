@@ -159,7 +159,11 @@ void outputWithCriteria(Node* head){
             printf("%s --> %d\n",copy1->naziv,copy1->lager);
         copy1 = copy1 -> next;
     }
-
+    while(head_prodavnica){
+        Prodavnica* zaBrisanje = head_prodavnica;
+        head_prodavnica = head_prodavnica ->next;
+        free(head_prodavnica);
+    }
 }
 
 int main(){
