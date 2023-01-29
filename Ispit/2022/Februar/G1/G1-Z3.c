@@ -73,6 +73,42 @@ void ispisStablaRastuce(Cvor* koren){
     ispisStablaRastuce(koren->levi);
 }
 
+void ispisTeretanaSaSpravama(Cvor* koren, int broj){
+    if(koren == NULL){
+        return;
+    }
+    ispisTeretanaSaSpravama(koren->levi,broj);
+    if((koren->brojSprava - koren->brojKardio > broj)){
+        ispisCvor(koren);
+    }
+    ispisTeretanaSaSpravama(koren->desni,broj);
+}
+
+//"Ovo je prosle godine bilo malo tricky" S.S
+void ispisOpstinaPoImenu(Cvor* koren, char* deo){
+    if(koren == NULL){
+        return;
+    }
+    ispisOpstinaPoImenu(koren->levi,deo);
+    int duzina = strlen(deo);
+    int offset = strlen(koren->opstina) - strlen(deo);
+    int porednjenje= strcmp(deo,koren->opstina + offset);
+    if(porednjenje == 0){
+        ispisCvor(koren);
+    }
+    ispisOpstinaPoImenu(koren->desni,deo);
+}
+
+void brisanjeStabla(Cvor* koren){
+    if(koren == NULL){
+        return;
+    }
+    brisanjeStabla(koren->levi);
+    brisanjeStabla(koren->desni);
+    free(koren);
+    return;
+}
+
 
 
 int main(){
@@ -97,26 +133,35 @@ int main(){
                     koren = dodajCvor(koren,noviCvor);
 
                 }while(!feof(file));
+                fclose(file);
                 break;
             }
-            case 2:
+            case 2: {
                 ispisStablaRastuce(koren);
                 break;
-            case 3:
-            case 4:
+            }
+            case 3: {
+                printf("Unesite broj: \n");
+                int broj;
+                scanf("%d", &broj);
+                ispisTeretanaSaSpravama(koren, broj);
+                break;
+            }
+            case 4:{
+                printf("Unesite deo naziva opstine : \n");
+                char deo[20];
+                scanf("%s",deo);
+                ispisOpstinaPoImenu(koren,deo);
+                break;
+            }
             case 5:
+                brisanjeStabla(koren);
+                return 42;
             default:
+                printf("Unesi opciju koja je moguca \n");
                 break;
         }
     }
-
-
-
-
-
-
-
-
     return 0;
 }
 
@@ -140,5 +185,4 @@ Palilula-Fitnes centar Tref-90-12
 Savski venac-Team fit-83-12
 Lazarevac-Max-60-8
  */
-
 
