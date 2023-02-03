@@ -8,34 +8,26 @@ Drugi string: mora
 Izlaz: moral sumoran temporalni
 */
 
-int daLiSadrzi(char* s, char* g,int start, int end){
+/*Kada pisemo funckiju koja proverava da li se isti karakteri pojavljuju u istom poretku u stringu s i stringu g
+ * prolazimo kroz svako slovo stringa velikog stringa i fiksiramo ga i onda trazimo poklapanje sa slovom koje je na redu
+ * da se prikaze u stringu g, i ako poklapanje nije tacno vrati 0*/
 
-    int na_redu = 0;
-    int len = strlen(g);
+int doesItContain(int start, int end, char* s,char* g){
+    int g_index = 0;
     for(int i = start; i <= end; i++){
-        for(int j = 0; j < len; j++){
+        for(int j = 0; j < strlen(g); j++){
             if(s[i] == g[j]){
-                if(s[i] == g[na_redu]){
-                    na_redu++;
-                    continue;
-                }
+                if(s[i] == g[g_index])
+                    g_index++;
                 else
                     return 0;
             }
+
         }
     }
     return 1;
-
-
 }
 
-void obrisi(char* s, int start, int end){
-    int len = end - start + 1;
-    for(int i = start; i < strlen(s) - len; i++){
-        s[i] = s[i + len];
-    }
-    s[strlen(s) - len] = 0;
-}
 
 int main()
 {
@@ -46,6 +38,8 @@ int main()
     g[(strlen(g))-1] = 0;
     int start,end;
 
+    int index = 0;
+
     for(int i = 0; i < strlen(s); i++){
         if(i == 0 || s[i - 1] == ' '){
             start = i;
@@ -53,12 +47,17 @@ int main()
         }
         if(i == strlen(s) - 1 || s[i + 1] == ' '){
             end = i;
-            if(!daLiSadrzi(s,g,start,end))
-                obrisi(s,start,end);
 
+            if(doesItContain(start,end,s,g)){
+                for(int k = start; k <= end; k++){
+                    s[index++] = s[k];
+                }
+                s[index++] = ' ';
+            }
         }
 
     }
+    s[index] = 0;
     fputs(s,stdout);
 
     return 0;

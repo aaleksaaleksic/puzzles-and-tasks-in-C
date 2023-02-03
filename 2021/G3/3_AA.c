@@ -10,40 +10,37 @@ Rezultat: 5506 65234 456
 
  */
 
-void change(char* broj){
+void modifikujBroj(int start,int end, char* str){
     int inkrement = 1;
-    int n = strlen(broj);
-    for(int i = 0; i < n / 2; i++){
-        broj[i] = (((broj[i] - '0') + inkrement) % 10) + '0';
-        broj[n - i - 1] = (((broj[n - i - 1] - '0') + inkrement) % 10) + '0';
+    int len = end - start + 1;
+    for(int  i = start; i < start + len/2; i++){
+        int broj = ((str[i] - '0') + inkrement) % 10;
+        str[i] = broj + '0';
+        broj = ((str[end - inkrement + 1] - '0') + inkrement) % 10;
+        str[end - inkrement + 1] = broj + '0';
         inkrement++;
     }
-    if(n % 2 == 1)
-        broj[n / 2] = (((broj[n / 2] - '0') + inkrement) % 10) + '0';
+    if(len % 2){
+       int broj = ((str[start + len/2] -'0') + inkrement) % 10;
+       str[start + len/2] = broj +'0';
+    }
 }
 
 int main(){
-    char str[100],novi[100];
-    novi[0] = 0;
+    char str[100];
     fgets(str,sizeof(str),stdin);
     str[(strlen(str) - 1)] = 0;
-    char* token;
-    char brojevi[50][50];
-    int idx = 0;
-
-    token = strtok(str," ");
-
-    while(token){
-        strcpy(brojevi[idx++],token);
-        token = strtok(NULL, " ");
+    int start, end;
+    for(int i = 0; i < strlen(str); i++){
+        if(i == 0 || str[i - 1] == ' '){
+            start = i;
+            continue;
+        }
+        if(i == strlen(str) - 1 || str[i + 1] == ' '){
+            end = i;
+            modifikujBroj(start,end,str);
+        }
     }
-    for(int i = 0; i < idx; i++) {
-        change(brojevi[i]);
-        strcat(novi,brojevi[i]);
-        strcat(novi," ");
-    }
-    fputs(novi,stdout);
-
-
+    fputs(str,stdout);
     return 0;
 }
