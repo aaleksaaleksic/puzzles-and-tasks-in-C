@@ -37,7 +37,8 @@ void meni(){
     printf("\t[2] Ispis\n");
     printf("\t[3] Ispis t sa spravama\n");
     printf("\t[4] Ispis svih teretana u opstini\n");
-    printf("\t[5] Brisanje\n\n");
+    printf("\t[5] Brisanje\n");
+    printf("\t[6] Ispis u fajl\n\n");
     printf("Unesite komandu:");
 
 }
@@ -96,6 +97,18 @@ void deleteTree(Node* root){
     deleteTree(root->right);
     free(root);
 }
+void ispisUFajl(Node* root, char* unos,FILE *fp){
+    if(root == NULL)
+        return;
+    ispisUFajl(root->left,unos,fp);
+    int unosLen = strlen(unos);
+    int opstinaLen = strlen(root->opstina);
+    if(strstr(root->opstina,unos) - root->opstina == opstinaLen - unosLen){
+        fprintf(fp,"REDZICU %s %s %d %d\n",root->opstina,root->naziv,root->sprave,root->kardio);
+    }
+
+    ispisUFajl(root->right,unos,fp);
+}
 int main(){
     Node* root = NULL;
     int n;
@@ -131,8 +144,19 @@ int main(){
                 printf("Uspesno obrisano\n");
                 return 14;
             }
+            case 6:{
+                FILE* fp = fopen("C:\\Users\\Korisnik\\CLionProjects\\UUP-2\\Ispit\\2022\\Februar\\G1\\aleksa.txt","w");
+                if(fp == NULL)
+                    return -1;
+                char unos[20];
+                printf("Unesite deo opstine:");
+                scanf("%s",unos);
+                ispisUFajl(root,unos,fp);
+                fclose(fp);
+
+            }
         }
-    } while(n != 6);
+    } while(n != 7);
 
     return 0;
 }
