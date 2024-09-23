@@ -1,7 +1,4 @@
-# UUP-2
-Ovdje mozete naci skoro sve uradjene zadatke za 2. kolokvijum i ispit iz predmeta UUP na RAF-u, zadaci su radjeni u C-u
-neka rijesenja su preuzeta od asistenata sa dodatne nastave, ali je izvjestan i obilan broj zadataka
-uradjen licno.
+Here you can find completed tasks and puzzles for the final exam in C Programming at the Union University School of Computing (RAF).
 
-U izradi zadataka je pomogao kolega Aleksa Aleksic, i obilan-vecinski dio koda za stringove i  ispitne zadatke jeste rezultat njegovog rada.
+This repository is the result of work with my dear colleague Danilo Jončić who is the problem solver for a lot of task and puzzles on this repository.
 
